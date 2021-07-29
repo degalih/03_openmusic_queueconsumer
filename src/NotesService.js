@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
- 
+
 class NotesService {
   constructor() {
-    this._pool = new Pool();
+    this.pool = new Pool();
   }
- 
+
   async getNotes(userId) {
     const query = {
       text: `SELECT notes.* FROM notes
@@ -13,9 +13,9 @@ class NotesService {
       GROUP BY notes.id`,
       values: [userId],
     };
-    const result = await this._pool.query(query);
+    const result = await this.pool.query(query);
     return result.rows;
   }
 }
- 
+
 module.exports = NotesService;

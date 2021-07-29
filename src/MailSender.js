@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer');
- 
+
 class MailSender {
   constructor() {
-    this._transporter = nodemailer.createTransport({
+    this.transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
@@ -12,7 +12,7 @@ class MailSender {
       },
     });
   }
- 
+
   sendEmail(targetEmail, content) {
     const message = {
       from: 'Notes Apps',
@@ -26,9 +26,9 @@ class MailSender {
         },
       ],
     };
- 
-    return this._transporter.sendMail(message);
+
+    return this.transporter.sendMail(message);
   }
 }
- 
+
 module.exports = MailSender;
