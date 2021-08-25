@@ -20,7 +20,7 @@ const init = async () => {
     noAck: true,
   });
 
-  console.log(`Queue Consumer sedang berjalan...`);
+  console.log(`Program Queue Consumer sedang berjalan...`);
 };
 
 init();
