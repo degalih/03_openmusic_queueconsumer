@@ -19,6 +19,8 @@ const init = async () => {
   channel.consume('export:playlistsongs', listener.listen, {
     noAck: true,
   });
+
+  console.log(`Queue Consumer sedang berjalan...`);
 };
 
 init();
