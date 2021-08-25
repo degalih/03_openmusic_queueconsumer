@@ -15,13 +15,13 @@ class MailSender {
 
   sendEmail(targetEmail, content) {
     const message = {
-      from: 'OpenMusic Apps',
+      from: 'Open Music Apps',
       to: targetEmail,
       subject: 'Ekspor Lagu Playlist',
       text: 'Terlampir hasil dari Lagu dalam Playlist',
       attachments: [
         {
-          filename: 'PlaylistSongs.json',
+          filename: 'playlistsongs.json',
           content,
         },
       ],

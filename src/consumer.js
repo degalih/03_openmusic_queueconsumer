@@ -1,22 +1,22 @@
 require('dotenv').config();
 const amqp = require('amqplib');
-const PlaylistSongsService = require('./PlaylistSongsService');
+const PlaylistsService = require('./PlaylistsService');
 const MailSender = require('./MailSender');
-const Listener = require('./listener');
+const Listener = require('./Listener');
 
 const init = async () => {
-  const playlistsongsService = new PlaylistSongsService();
+  const playlistsongs = new PlaylistsService();
   const mailSender = new MailSender();
-  const listener = new Listener(playlistsongsService, mailSender);
+  const listener = new Listener(playlistsongs, mailSender);
 
   const connection = await amqp.connect(process.env.RABBITMQ_SERVER);
   const channel = await connection.createChannel();
 
-  await channel.assertQueue('export:PlaylistSongs', {
+  await channel.assertQueue('export:playlistsongs', {
     durable: true,
   });
 
-  channel.consume('export:PlaylistSongs', listener.listen, {
+  channel.consume('export:playlistsongs', listener.listen, {
     noAck: true,
   });
 };
